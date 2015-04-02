@@ -3,7 +3,7 @@
 $server = "localhost";
 $username = "root";
 $password = "Killdozer";
-$db = "esb57";
+$db = "qwry";
 $link = mysql_connect($server,$username,$password);			
 
 /* Get stuff out of the post array */
