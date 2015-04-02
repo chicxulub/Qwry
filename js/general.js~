@@ -1,0 +1,72 @@
+/* on dom load */
+$( function(){
+        if($("#stud").is(":checked")){
+	    $("#if-student").show("bounce",500);
+	} else {
+	    $("#if-student").hide("blind",200);
+	}
+	$("header span").css("font-size",$("header").height()-10);
+	$("header span").show("fade");
+	
+});
+
+$( window ).resize(function() {
+	$("header span").css("font-size",$("header").height()-10);
+});
+
+$("#gear").rotate({ 
+	bind: 
+	{ 
+	    mouseover : function() { 
+		$(this).rotate({animateTo:180})
+		    },
+		mouseout : function() { 
+		$(this).rotate({animateTo:0})
+		    }
+	} 
+});
+
+$("input:radio").change( function(){
+	if($("#stud").is(":checked")){
+	    $("#if-student").show("bounce", 1000);
+	} else {
+	    $("#if-student").hide("blind",200);
+	}
+});
+
+function selectAction(){
+    if($("#usertype input[type=radio]:checked").length){
+	if($("#teach").is(":checked")){
+	    if($("#user").val()){
+		document.getElementById("usertype").action = "index.php?" + classroomId(5);
+	    } else {
+		$("#user").css("background-color","pink");
+		alert("Please choose a username.");
+		document.getElementById("usertype").action = "index.php";
+	    }	       
+	} else {
+	    if($("#class").val()){
+		if($("#user").val()){
+		    document.getElementById("usertype").action = "index.php?" + $("#class").val();
+		}
+		else {
+		    $("#user").css("background-color","pink");
+		    alert("Please choose a username.");
+		    document.getElementById("usertype").action = "index.php";
+		}
+	    } else {
+		$("#class").css("background-color", "pink")
+		alert("Please ask your lecturer for the classroom ID.");
+		document.getElementById("usertype").action = "index.php";
+	    }
+	}
+    } else {alert("Are you a lecturer or a student?");}
+}
+
+function classroomId(length){
+     var result = '';
+     chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+     for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+     return result;
+}
+
