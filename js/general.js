@@ -11,12 +11,20 @@ $( function(){
 	$("header span").css("font-size",$("header").height()-10);
 	$("header span").show("fade");
 	
-	// check to see if we were redirected, then alert the user to choose a new username 
-	var alert_username = (window.location.href).split('myclass=')[1]
+	// check to see if we were redirected due to a username error, then alert the user to choose a new username 
+	var alert_username = (window.location.href).split('myclass=')[1];
 	if(alert_username) {
 		$("label[for='user']").html("username <span style='color:red;'>*</span>");
-		$(".main-container").append("<span style='font-family:sans-serif;font-size:1.3em;margin:5px;'>Sorry, that username already exists.</span>")
+		$(".main-container").append("<span style='font-family:sans-serif;font-size:1.3em;margin:5px;'>Sorry, that username already exists.</span>");
 	}
+	
+	// check to see if we were redirected due to a classroom error, then alert the user to choose a new classroom 
+	var alert_classroom = (window.location.href).split('myuser=')[1];
+	if(alert_classroom) {
+		$("label[for='class']").html("classroom ID <span style='color:red;'>*</span>");
+		$(".main-container").append("<span style='font-family:sans-serif;font-size:1.3em;margin:5px;'>Sorry, that classroom doesn't exist.</span>");
+	}
+
 });
 
 /* fix header font sizes on window resize */

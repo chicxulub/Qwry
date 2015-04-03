@@ -16,10 +16,14 @@
     <span class="intro">create or join</span>
       <form id="usertype" method="post" onSubmit="return selectAction();">
         <label for="user">username</label><br/>
-        <input id="user" type="text" name="username" <?php echo "value=".(isset($_POST["username"]) ? $_POST["username"] : ""); ?>><br/>
+        <input id="user" type="text" name="username" <?php /*echo "value=".(isset($_POST["username"]) ? $_POST["username"] : "");*/ 
+		if(isset($_POST["username"])) {echo "value=".$_POST["username"];}
+		elseif(isset($_GET["myuser"])) {echo "value=".$_GET["myuser"];}
+		?>
+		><br/>
         <input id="teach" type="radio" name="designation" value="lecturer" <?php echo ($_POST["designation"]=="lecturer"?"checked":"");?>>
         <label for="teach">lecturer</label><br/>
-        <input id="stud" type="radio" name="designation" value="student" <?php echo (($_POST["designation"]=="student"||isset($_GET["myclass"]))?"checked":"");?>>
+        <input id="stud" type="radio" name="designation" value="student" <?php echo (($_POST["designation"]=="student"||isset($_GET["myclass"])||isset($_GET["myuser"]))?"checked":"");?>>
         <label for="stud">student</label><br/><br/>
         <div id="if-student">
         <label for="class">classroom ID</label><br/> 
