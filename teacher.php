@@ -6,15 +6,15 @@ $password = "Killdozer";
 $db = "qwry";
 $link = mysql_connect($server,$username,$password);			
 
-/* Get stuff out of the post array */
+/* Get stuff out of the post & get array */
 $lect = $_POST["username"];
+$cID = $_GET["classroomID"];
 
 if(!$link){ 
 	die("Could not connect to the CEFNS server: ".mysql_error()); 
 } else {
 	header('Content-Type: text/html; charset=utf-8');
-	$cID = $_GET["classroomID"];
-
+	
 	/******************
 	 * Define Queries *
 	 ******************/
@@ -42,6 +42,8 @@ if(!$link){
 		if(mysql_query($createStud)){
 			echo "Created student table<br>";
 		}
+		
+	} else {
 		
 	}
 

@@ -11,6 +11,12 @@ $( function(){
 	$("header span").css("font-size",$("header").height()-10);
 	$("header span").show("fade");
 	
+	// check to see if we were redirected, then alert the user to choose a new username 
+	var alert_username = (window.location.href).split('myclass=')[1]
+	if(alert_username) {
+		$("label[for='user']").html("username <span style='color:red;'>*</span>");
+		$(".main-container").append("<span style='font-family:sans-serif;font-size:1.3em;margin:5px;'>Sorry, that username already exists.</span>")
+	}
 });
 
 /* fix header font sizes on window resize */

@@ -14,25 +14,30 @@ if(!$link){
 	die("Could not connect to the CEFNS server: ".mysql_error()); 
 } else {
 	header('Content-Type: text/html; charset=utf-8');
-	mysql_select_db($db, $link);
-	$student_query = mysql_query("SELECT stud FROM student_".$cID." WHERE stud = '".$username."'");
-	if(mysql_num_rows($student_query)){
-		echo "username already exists";
-		header('Location: index.php?error=userexists?oldclass='.$cID);
-		exit();
-	} else {
-		$add_student = "INSERT INTO student_".$cID." VALUES ('".$username."', '".$cID."')";
-		echo $add_student;
-		if(mysql_query($add_student)){
-			echo "created student";
-			//header('Location: student.php');
-			exit();
-		}
-	}
-
+	
 	/******************
 	 * Define Queries *
 	 ******************/
-	 //$insertStud = "INSERT INTO class_".$cID." VALUES('".$stud.)
+	 
+	$student_query = "SELECT stud FROM student_".$cID." WHERE stud = '".$username."'";
+	$add_student = "INSERT INTO student_".$cID." VALUES ('".$username."', '".$cID."')";
+
+	if(isset($cID) && mysql_select_db($db, $link)){
+		$user_exists = mysql_query($student_query);
+		if(mysql_num_rows($user_exists)){
+			echo "username already exists";
+			header('Location: index.php?myclass='.$cID);
+			exit();
+		} else {
+			echo $add_student;
+			if(mysql_query($add_student)){
+				echo "created student";
+				//header('Location: student.php');
+				exit();
+			}
+		}
+	} else {
+	}
+
 }
 ?>
