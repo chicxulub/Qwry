@@ -28,7 +28,7 @@ if(!$link){
 		stud VARCHAR(20) PRIMARY KEY,
 		grade INT,
 		id CHAR(5), 
-		CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES class_".$cID."(id)
+		CONSTRAINT id_fk_".$cID." FOREIGN KEY (id) REFERENCES class_".$cID."(id)
 		)";
 		
 	// create the question table
@@ -37,7 +37,7 @@ if(!$link){
 		stud VARCHAR(20),
 		message TEXT,
 		answered BOOLEAN,
-		CONSTRAINT stud_fk FOREIGN KEY (stud) REFERENCES student_".$cID."(stud)
+		CONSTRAINT stud_fk_".$cID." FOREIGN KEY (stud) REFERENCES student_".$cID."(stud)
 	)";
 	
 	// insert the lecturer into the classroom table and give it a primary key 
@@ -48,9 +48,13 @@ if(!$link){
 	if(isset($cID) && mysql_select_db($db,$link)){
 		// create the classroom table 
 		mysql_query($createClass);
+		echo $createClass."<br>";
 		mysql_query($insertLect);
+		echo $insertLect."<br>";
 		mysql_query($createStud);
+		echo $createStud."<br>";
 		mysql_query($createQuest);
+		echo $createQuest."<br>";
 		
 	} else {
 		// something went wrong
@@ -59,3 +63,9 @@ if(!$link){
 }
 
 ?>
+
+<script type="text/javascript">
+window.onbeforeunload = function(){
+  var result = confirm();
+};
+</script>
