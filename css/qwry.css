@@ -84,15 +84,15 @@ label {
 /* * * * * * 
  * Teacher *
  * * * * * */
- 
-#teacher .right {
+
+.right {
  background-color:orange;
  height:100%;
  width:50%;
  float:right;
 }
 
-#teacher .left {
+.left {
  background-color:blue;
  height:100%;
  width:50%;

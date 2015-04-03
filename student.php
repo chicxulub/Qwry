@@ -55,6 +55,11 @@ if(!$link){
 				<span>Qwry</span>
 			  </header>
 			  <div class="content">
+				<div class="left">
+				</div>
+				<div class="right">
+				</div>
+			  
 			  </div>
 			<?php	
 		}
@@ -66,5 +71,4 @@ if(!$link){
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
