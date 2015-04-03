@@ -48,14 +48,27 @@ if(!$link){
 	if(isset($cID) && mysql_select_db($db,$link)){
 		// create the classroom table 
 		mysql_query($createClass);
-		echo $createClass."<br>";
+		// echo $createClass."<br>";
 		mysql_query($insertLect);
-		echo $insertLect."<br>";
+		// echo $insertLect."<br>";
 		mysql_query($createStud);
-		echo $createStud."<br>";
+		// echo $createStud."<br>";
 		mysql_query($createQuest);
-		echo $createQuest."<br>";
-		
+		// echo $createQuest."<br>";
+		?>
+		<head>
+			  <link rel="stylesheet" type="text/css" href="css/qwry.css"/>
+			  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+			  <title>Qwry: Questing With Realness, Yo!</title>
+			</head>
+
+			<body id="qwry">
+			  <header>
+				<span>Qwry</span>
+			  </header>
+			  <div class="content">
+			  </div>
+		<?php
 	} else {
 		// something went wrong
 	}
@@ -63,9 +76,7 @@ if(!$link){
 }
 
 ?>
-
-<script type="text/javascript">
-window.onbeforeunload = function(){
-  var result = confirm();
-};
-</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
+<script src="js/general.js"></script>

@@ -9,6 +9,7 @@ $link = mysql_connect($server,$username,$password);
 /* Get stuff out of the post & get array */
 $username = $_POST["username"];
 $cID = $_GET["classroomID"];
+$grade = 90;
 
 if(!$link){ 
 	die("Could not connect to the CEFNS server: ".mysql_error()); 
@@ -22,7 +23,7 @@ if(!$link){
 	$student_query = "SELECT stud FROM student_".$cID." WHERE stud = '".$username."'";
 	
 	// insert student into student table 
-	$add_student = "INSERT INTO student_".$cID." VALUES ('".$username."', '".$cID."')";
+	$add_student = "INSERT INTO student_".$cID." VALUES ('".$username."',".$grade.", '".$cID."')";
 
 	// check if classroom exists 
 	$classroom_query = "SHOW TABLES LIKE 'class_".$cID."'";
@@ -40,7 +41,22 @@ if(!$link){
 			exit();
 		} elseif((mysql_num_rows($classroom_exists)) && !(mysql_num_rows($user_exists))){
 			// the username and classroom checked out
-			mysql_query($add_student);
+			mysql_query($add_student); // added student 
+			?>
+			<!DOCTYPE html>
+			<head>
+			  <link rel="stylesheet" type="text/css" href="css/qwry.css"/>
+			  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+			  <title>Qwry: Questing With Realness, Yo!</title>
+			</head>
+
+			<body id="qwry">
+			  <header>
+				<span>Qwry</span>
+			  </header>
+			  <div class="content">
+			  </div>
+			<?php	
 		}
 	} else {
 		// something went wrong 
@@ -48,3 +64,7 @@ if(!$link){
 
 }
 ?>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
+<script src="js/general.js"></script>
