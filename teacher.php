@@ -18,33 +18,42 @@ if(!$link){
 	/******************
 	 * Define Queries *
 	 ******************/
+	// create classroom table
 	$createClass = "CREATE TABLE class_".$cID."(
 		id CHAR(5) PRIMARY KEY,
 		lect VARCHAR(20)
 		)";
+	// create student table 
 	$createStud = "CREATE TABLE student_".$cID."(
 		stud VARCHAR(20) PRIMARY KEY,
+		grade INT,
 		id CHAR(5), 
 		CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES class_".$cID."(id)
 		)";
+		
+	// create the question table
+	$createQuest = "CREATE TABLE question_".$cID."(
+		questionID INT AUTO_INCREMENT PRIMARY KEY,
+		stud VARCHAR(20),
+		message TEXT,
+		answered BOOLEAN,
+		CONSTRAINT stud_fk FOREIGN KEY (stud) REFERENCES student_".$cID."(stud)
+	)";
+	
+	// insert the lecturer into the classroom table and give it a primary key 
 	$insertLect = "INSERT INTO class_".$cID." VALUES ('".
 		$cID."','".$lect."'
 		)";
 
 	if(isset($cID) && mysql_select_db($db,$link)){
-	// create the classroom table 
-		if(mysql_query($createClass)){;
-			echo "Created table ".$cID."<br>";
-		}
-		if(mysql_query($insertLect)){
-			echo "Insert successful<br>";
-		}
-		if(mysql_query($createStud)){
-			echo "Created student table<br>";
-		}
+		// create the classroom table 
+		mysql_query($createClass);
+		mysql_query($insertLect);
+		mysql_query($createStud);
+		mysql_query($createQuest);
 		
 	} else {
-		
+		// something went wrong
 	}
 
 }
