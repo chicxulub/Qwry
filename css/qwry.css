@@ -80,3 +80,21 @@ label {
  font-size:2em;
  margin:5px;
 } 
+
+/* * * * * * 
+ * Teacher *
+ * * * * * */
+ 
+#teacher .right {
+ background-color:orange;
+ height:100%;
+ width:50%;
+ float:right;
+}
+
+#teacher .left {
+ background-color:blue;
+ height:100%;
+ width:50%;
+ float:left;
+}

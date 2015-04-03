@@ -62,11 +62,15 @@ if(!$link){
 			  <title>Qwry: Questing With Realness, Yo!</title>
 			</head>
 
-			<body id="qwry">
+			<body id="teacher">
 			  <header>
 				<span>Qwry</span>
 			  </header>
 			  <div class="content">
+				<div class="left">
+				</div>
+				<div class="right">
+				</div>
 			  </div>
 		<?php
 	} else {
