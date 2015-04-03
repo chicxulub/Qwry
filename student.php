@@ -18,7 +18,7 @@ if(!$link){
 	$student_query = mysql_query("SELECT stud FROM student_".$cID." WHERE stud = '".$username."'");
 	if(mysql_num_rows($student_query)){
 		echo "username already exists";
-		header('Location: index.php?error="userexists"');
+		header('Location: index.php?error=userexists?oldclass='.$cID);
 		exit();
 	} else {
 		$add_student = "INSERT INTO student_".$cID." VALUES ('".$username."', '".$cID."')";
