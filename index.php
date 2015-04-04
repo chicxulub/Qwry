@@ -36,8 +36,22 @@
       </form>
     </div>
   </div>
-</body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
+<script type="text/javascript">
+$("#gear").rotate({ 
+	bind: 
+	{ 
+	    mouseover : function() { 
+		$(this).rotate({animateTo:180})
+		    },
+		mouseout : function() { 
+		$(this).rotate({animateTo:0})
+		    }
+	} 
+});
+</script>
+</body>
+</html>

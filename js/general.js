@@ -7,11 +7,11 @@ $( function(){
 	} else {
 	    $("#if-student").hide("blind",200);
 	}
-	// check window size and load the font size before showing it 
+	
 	$("header span").css("font-size",$("header").height()-10);
-	$("header span").show("fade");
 	
 	// check to see if we were redirected due to a username error, then alert the user to choose a new username 
+	
 	var alert_username = (window.location.href).split('myclass=')[1];
 	if(alert_username) {
 		$("label[for='user']").html("username <span style='color:red;'>*</span>");
@@ -31,24 +31,6 @@ $( function(){
 $( window ).resize(function() {
 	$("header span").css("font-size",$("header").height()-10);
 });
-
-/* 
-	Rotate the gear on hover 
-	Just for style B) 
-*/
-
-$("#gear").rotate({ 
-	bind: 
-	{ 
-	    mouseover : function() { 
-		$(this).rotate({animateTo:180})
-		    },
-		mouseout : function() { 
-		$(this).rotate({animateTo:0})
-		    }
-	} 
-});
-
 /* 
 	If the user chooses 'student', show them the input for the classroom ID 
 	As always, make it pretty! 
@@ -60,7 +42,6 @@ $("input:radio").change( function(){
 	    $("#if-student").hide("blind",200);
 	}
 });
-
 /* 
 	This is javascript form validation
 	Just make sure everything's filled out before sending them to their designated classroom 

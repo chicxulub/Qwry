@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/qwry.css"/>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+  <title>Qwry: Questing With Realness, Yo!</title>
+</head>
+<body>
 <?php
 /* Connection Stuff */
 $server = "localhost";
@@ -27,7 +34,8 @@ if(!$link){
 	$createStud = "CREATE TABLE student_".$cID."(
 		stud VARCHAR(20) PRIMARY KEY,
 		grade INT,
-		id CHAR(5), 
+		raisedHand BOOLEAN,
+		id CHAR(5),
 		CONSTRAINT id_fk_".$cID." FOREIGN KEY (id) REFERENCES class_".$cID."(id)
 		)";
 		
@@ -56,23 +64,18 @@ if(!$link){
 		mysql_query($createQuest);
 		// echo $createQuest."<br>";
 		?>
-		<head>
-			  <link rel="stylesheet" type="text/css" href="css/qwry.css"/>
-			  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-			  <title>Qwry: Questing With Realness, Yo!</title>
-			</head>
-
-			<body id="teacher">
-			  <header>
-				<span>Qwry</span>
-			  </header>
-			  <div class="content">
-				<div class="left">
-				</div>
-				<div class="right">
-				</div>
-			  </div>
+		<header>
+			<span>Qwry</span>
+		</header>
+		<div class="content">
+		<div class="left">
+		</div>
+		<div class="right">
+		</div>
+		</div>
+		
 		<?php
+			
 	} else {
 		// something went wrong
 	}
@@ -80,6 +83,10 @@ if(!$link){
 }
 
 ?>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
+</body>
+</html>

@@ -1,15 +1,22 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/qwry.css"/>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+  <title>Qwry: Questing With Realness, Yo!</title>
+</head>
+<body>
 <?php
 /* Connection Stuff */
 $server = "localhost";
 $username = "root";
 $password = "Killdozer";
 $db = "qwry";
-$link = mysql_connect($server,$username,$password);			
-
+$link = mysql_connect($server,$username,$password);
 /* Get stuff out of the post & get array */
 $username = $_POST["username"];
 $cID = $_GET["classroomID"];
 $grade = 90;
+$raised_hand = 0;
 
 if(!$link){ 
 	die("Could not connect to the CEFNS server: ".mysql_error()); 
@@ -23,7 +30,7 @@ if(!$link){
 	$student_query = "SELECT stud FROM student_".$cID." WHERE stud = '".$username."'";
 	
 	// insert student into student table 
-	$add_student = "INSERT INTO student_".$cID." VALUES ('".$username."',".$grade.", '".$cID."')";
+	$add_student = "INSERT INTO student_".$cID." VALUES ('".$username."',".$grade.",".$raised_hand.", '".$cID."')";
 
 	// check if classroom exists 
 	$classroom_query = "SHOW TABLES LIKE 'class_".$cID."'";
@@ -43,24 +50,29 @@ if(!$link){
 			// the username and classroom checked out
 			mysql_query($add_student); // added student 
 			?>
-			<!DOCTYPE html>
-			<head>
-			  <link rel="stylesheet" type="text/css" href="css/qwry.css"/>
-			  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-			  <title>Qwry: Questing With Realness, Yo!</title>
-			</head>
+			
 
-			<body id="qwry">
-			  <header>
-				<span>Qwry</span>
-			  </header>
-			  <div class="content">
-				<div class="left">
+			<header>
+			<span>Qwry</span>
+			</header>
+			<div class="content">
+			<div class="left">
+				<div id="grade-container">	
+					<div id="grade-box">A</div>
+					<form id="grade-radio-box">
+					    Lecture Grade<br/>
+						<input type="radio" name="grade" value="a" checked/> A<br/>
+						<input type="radio" name="grade" value="b"/> B<br/>
+						<input type="radio" name="grade" value="c"/> C<br/>
+						<input type="radio" name="grade" value="d"/> D<br/>
+						<input type="radio" name="grade" value="f"/> F<br/>
+					</form>
 				</div>
-				<div class="right">
-				</div>
-			  
-			  </div>
+				<textarea id="question" cols=50 rows=7>Ask a question</textarea>
+			</div>
+			<div class="right">
+			</div>
+			</div>
 			<?php	
 		}
 	} else {
@@ -72,3 +84,19 @@ if(!$link){
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="js/general.js"></script>
+<script type="text/javascript">
+	
+	var ajaxData = function() {
+	$.getJSON('feed.php?<?php echo "classroomID=".$cID ?>', function(data){
+		var output = '<ul>';
+		$.each(data, function (key, val) {
+			output += '<li>' + val + '</li>';
+		});
+		output+='</ul>';
+		//$('#update').html(output);
+	});
+	};
+	setInterval(ajaxData, 1000);
+</script>
+</body>
+</html>
