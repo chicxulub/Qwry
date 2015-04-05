@@ -87,3 +87,12 @@ function classroomId(length){
      return result;
 }
 
+function getChildIds(selector){
+	var child_ids = [];
+	var children = $(selector).children();
+	children.each(function(){
+		child_ids.push($(this).attr("id"));
+	});	
+	return child_ids;
+
+}

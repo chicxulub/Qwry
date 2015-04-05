@@ -70,7 +70,7 @@ if(!$link){
 				<img id="ask" src="images/ask-question.png"/>
 			</div>
 			<div class="right">
-				
+				<div id="q1" class="q-box"></div>
 			</div>
 			</div>
 			<?php	
@@ -86,22 +86,21 @@ if(!$link){
 <script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
 <script type="text/javascript">
-	var num_questions = 0;
 	var ajaxData = function() {
-		var obj;
 		$.ajax({
 			type:"POST",
 			dataType: "json",
 			url: "feed.php",
 			data: { classroomID: '<?php echo $cID; ?>' },
 			success: function(data) {
-				/*var children = $(".right").children();
+				var children = getChildIds(".right");
 				console.log("It's running");
+				console.log(children);
 				$.each(data, function(key, question) {
-					if($.inArray(key, children) > -1){
-						$(".right").append("<div id='"++"'")
+					if(!($.inArray(key, children) > -1)){
+						$(".right").append("<div id='"+key+"'")
 					}
-				});*/
+				});
 				
 			}
 		});
