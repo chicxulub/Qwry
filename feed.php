@@ -5,7 +5,7 @@ $username = "root";
 $password = "Killdozer";
 $db = "qwry";
 $link = mysql_connect($server,$username,$password);	
-$cID = $_GET["classroomID"];
+$cID = $_POST["classroomID"];
 
 if(!$link){ 
 	die("Could not connect to the CEFNS server: ".mysql_error()); 
@@ -23,7 +23,8 @@ if(!$link){
 		$raised = mysql_fetch_array(mysql_query("SELECT stud, raisedHand FROM student_".$cID." WHERE stud ='".$table["stud"]."'"));
 		//echo $raised["stud"];
 		//echo $raised["raisedHand"];
-		$questions[$table["questionID"]] = array("user" => $table["stud"],
+		$id = "q".$table["questionID"];
+		$questions[$id] = array("user" => $table["stud"],
 												 "question" => $table["message"],
 												 "raisedHand" => $raised["raisedHand"]);
 		//$question_tables[$table["stud"]]["questionID"] = $table["message"]; 

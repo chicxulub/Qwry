@@ -70,6 +70,7 @@ if(!$link){
 				<img id="ask" src="images/ask-question.png"/>
 			</div>
 			<div class="right">
+				
 			</div>
 			</div>
 			<?php	
@@ -85,21 +86,28 @@ if(!$link){
 <script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
 <script type="text/javascript">
-	
+	var num_questions = 0;
 	var ajaxData = function() {
+		var obj;
 		$.ajax({
 			type:"POST",
-			//dataType: "json",
+			dataType: "json",
 			url: "feed.php",
 			data: { classroomID: '<?php echo $cID; ?>' },
-			success: function() {
-				//console.log(data);
-				console.log("it's running");
+			success: function(data) {
+				/*var children = $(".right").children();
+				console.log("It's running");
+				$.each(data, function(key, question) {
+					if($.inArray(key, children) > -1){
+						$(".right").append("<div id='"++"'")
+					}
+				});*/
+				
 			}
 		});
 	};
 	// make a request every second
-	setInterval(ajaxData, 1000);
+	setInterval(ajaxData, 3000);
 	
 	
 	$("#grade-radio-box input[type='radio']").click(function(){
