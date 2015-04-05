@@ -61,11 +61,11 @@ if(!$link){
 					<div id="grade-box">A</div>
 					<form id="grade-radio-box">
 					    Lecture Grade<br/>
-						<input type="radio" name="grade" value="a" checked/> A<br/>
-						<input type="radio" name="grade" value="b"/> B<br/>
-						<input type="radio" name="grade" value="c"/> C<br/>
-						<input type="radio" name="grade" value="d"/> D<br/>
-						<input type="radio" name="grade" value="f"/> F<br/>
+						<input type="radio" name="grade" value="A" checked/> A<br/>
+						<input type="radio" name="grade" value="B"/> B<br/>
+						<input type="radio" name="grade" value="C"/> C<br/>
+						<input type="radio" name="grade" value="D"/> D<br/>
+						<input type="radio" name="grade" value="F"/> F<br/>
 					</form>
 				</div>
 				<textarea id="question" cols=50 rows=7>Ask a question</textarea>
@@ -87,16 +87,30 @@ if(!$link){
 <script type="text/javascript">
 	
 	var ajaxData = function() {
-	$.getJSON('feed.php?<?php echo "classroomID=".$cID ?>', function(data){
-		var output = '<ul>';
-		$.each(data, function (key, val) {
-			output += '<li>' + val + '</li>';
+		$.getJSON('feed.php?<?php echo "classroomID=".$cID ?>', function(data){
+			var output = '<ul>';
+			$.each(data, function (key, val) {
+				output += '<li>' + val + '</li>';
+			});
+			output+='</ul>';
+			//$('#update').html(output);
 		});
-		output+='</ul>';
-		//$('#update').html(output);
-	});
 	};
 	setInterval(ajaxData, 1000);
+	
+	$('#grade-radio-box input[type="radio"]').click(function(){
+		
+		grade = $(this).val();
+		$.ajax({
+			url: "grade_change.php",
+			type: "POST",
+			data: { letter_grade: grade, classroomID: '<?php echo $cID; ?>', user: '<?php echo $username; ?>'},
+			success: function() { 
+				$("#grade-box").text(grade);
+			}
+		});
+	});
+
 </script>
 </body>
 </html>
