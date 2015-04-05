@@ -109,22 +109,22 @@ if(!$link){
 			type: "POST",
 			data: { letter_grade: grade, classroomID: '<?php echo $cID; ?>', user: '<?php echo $username; ?>'},
 			success: function() { 
-				$("#grade-box").text(grade);
+				$("#grade-box").image(grade);
 				switch (grade) {
 					case "A":
-						$("#grade-box").css("background-color", "green");
+						$("#grade-box").attr("src", "images/A.png");
 						break;
 					case "B":
-						$("#grade-box").css("background-color", "blue");
+						$("#grade-box").attr("src", "images/B.png");
 						break;
 					case "C":
-						$("#grade-box").css("background-color", "yellow");
+						$("#grade-box").attr("src", "images/C.png");
 						break;
 					case "D":
-						$("#grade-box").css("background-color", "orange");
+						$("#grade-box").attr("src", "images/D.png");
 						break;
 					case "F":
-						$("#grade-box").css("background-color", "red");
+						$("#grade-box").attr("src", "images/F.png");
 						break;
 				}
 			}
