@@ -67,11 +67,6 @@ label {
  display:none;
 }
 
-
-/* * * * * * * *  
- * Text Format *
- * * * * * * * */
-
 .intro{
  font-family:serif;
  font-size:2em;
@@ -82,11 +77,10 @@ label {
  height:100%;
  width:50%;
  float:right;
- padding-top:20px;
+ overflow-y:scroll;
 }
 
 .left {
- height:100%;
  width:50%;
  float:left;
  padding-top:20px;
@@ -114,11 +108,8 @@ label {
  left:0;
  margin:0;
  height:200px;
- //line-height:200px;
  width:200px;
  display:inline-block;
- //font-size:100px;
- //color:#FFF;
 }
 
 #grade-radio-box {
@@ -126,7 +117,6 @@ label {
  right:0;
  display:inline-block;
  width:150px;
- //text-align:left;
  font-size:1.3em;
  font-family: sans-serif;
 }
@@ -134,4 +124,23 @@ label {
 #grade-radio-box * {
  position:absolute;
  left:0;
+}
+
+.q-box {
+ display:none;
+ min-height:120px;
+ padding:20px;
+ border-bottom: 2px dashed black;
+ background-color:white;
+}
+
+.user-tits {
+ font-size:1.5em;
+ font-family:sans-serif;
+ margin-bottom:20px;
+}
+
+.mess {
+ font-size:1.1em;
+ font-family:serif;
 }

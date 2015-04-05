@@ -6,7 +6,7 @@ $db = "qwry";
 $link = mysql_connect($server,$username,$password);
 mysql_select_db($db, $link);
 
-$message = $_POST["question"];
+$message = addslashes($_POST["question"]);
 $cID = $_POST["classroomID"];
 $user = $_POST["user"];
 

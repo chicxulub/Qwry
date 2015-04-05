@@ -70,7 +70,6 @@ if(!$link){
 				<img id="ask" src="images/ask-question.png"/>
 			</div>
 			<div class="right">
-				<div id="q1" class="q-box"></div>
 			</div>
 			</div>
 			<?php	
@@ -98,7 +97,11 @@ if(!$link){
 				console.log(children);
 				$.each(data, function(key, question) {
 					if(!($.inArray(key, children) > -1)){
-						$(".right").append("<div id='"+key+"'")
+						var q = $("<div/>", {	
+									id: key,
+									class: 'q-box',
+									html: '<span class="user-tits">'+question.user+'</span><br/><span class="mess">'+question.question+'</span>'})
+						q.appendTo(".right").show('bounce',1000);
 					}
 				});
 				
