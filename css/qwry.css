@@ -93,6 +93,11 @@ label {
  text-align:center;
 }
 
+.left img {
+ position: relative;
+ left:100px;
+}
+
 #grade-container{
  position:relative;
  width:370px;

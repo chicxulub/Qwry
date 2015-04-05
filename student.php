@@ -50,8 +50,6 @@ if(!$link){
 			// the username and classroom checked out
 			mysql_query($add_student); // added student 
 			?>
-			
-
 			<header>
 			<span>Qwry</span>
 			</header>
@@ -68,7 +66,8 @@ if(!$link){
 						<input type="radio" name="grade" value="F"/> F<br/>
 					</form>
 				</div>
-				<textarea id="question" cols=50 rows=7>Ask a question</textarea>
+				<textarea id="question" cols=50 rows=7>Ask a question</textarea><br/><br/>
+				<img id="ask" src="images/ask-question.png"/>
 			</div>
 			<div class="right">
 			</div>
@@ -83,9 +82,10 @@ if(!$link){
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
 <script type="text/javascript">
-	
+	/*
 	var ajaxData = function() {
 		$.getJSON('feed.php?<?php echo "classroomID=".$cID ?>', function(data){
 			var output = '<ul>';
@@ -97,8 +97,9 @@ if(!$link){
 		});
 	};
 	setInterval(ajaxData, 1000);
+	*/
 	
-	$('#grade-radio-box input[type="radio"]').click(function(){
+	$("#grade-radio-box input[type='radio']").click(function(){
 		
 		grade = $(this).val();
 		$.ajax({
@@ -127,6 +128,34 @@ if(!$link){
 			}
 		});
 	});
+	
+	$("#ask").click(function() {
+		message_text = $("#question").val();
+		$.ajax({
+			url: "ask_question.php",
+			type: "POST",
+			data: { question: message_text,  classroomID: '<?php echo $cID; ?>', user: '<?php echo $username; ?>'},
+			success: function(){
+				$("#question").val("Ask another question...");
+			}
+		
+		});
+	});
+	
+	/* ask button cute styles */
+
+	$("#ask").rotate({
+		bind:
+		{
+		   mouseover : function() { 
+			$(this).rotate({animateTo:-5})
+				},
+			mouseout : function() { 
+			$(this).rotate({animateTo:0})
+				}
+		} 
+	});
+
 
 </script>
 </body>

@@ -42,6 +42,7 @@ $("input:radio").change( function(){
 	    $("#if-student").hide("blind",200);
 	}
 });
+
 /* 
 	This is javascript form validation
 	Just make sure everything's filled out before sending them to their designated classroom 
