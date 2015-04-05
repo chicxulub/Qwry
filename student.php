@@ -85,22 +85,24 @@ if(!$link){
 <script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
 <script type="text/javascript">
-	/*
+	
 	var ajaxData = function() {
-		$.getJSON('feed.php?<?php echo "classroomID=".$cID ?>', function(data){
-			var output = '<ul>';
-			$.each(data, function (key, val) {
-				output += '<li>' + val + '</li>';
-			});
-			output+='</ul>';
-			//$('#update').html(output);
+		$.ajax({
+			type:"POST",
+			//dataType: "json",
+			url: "feed.php",
+			data: { classroomID: '<?php echo $cID; ?>' },
+			success: function() {
+				//console.log(data);
+				console.log("it's running");
+			}
 		});
 	};
+	// make a request every second
 	setInterval(ajaxData, 1000);
-	*/
+	
 	
 	$("#grade-radio-box input[type='radio']").click(function(){
-		
 		grade = $(this).val();
 		$.ajax({
 			url: "grade_change.php",

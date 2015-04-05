@@ -12,26 +12,25 @@ if(!$link){
 } else {
 	//header('Content-Type: text/html; charset=utf-8');
 	mysql_select_db($db,$link);
-	/* collect class tables */
-	$class_tables  = array();
-	$class_result = mysql_query("SELECT * FROM class_".$cID);
-	while($table = mysql_fetch_array($class_result)){
-		array_push($class_tables, $table[0]);
-	}
-	print_r($class_tables);
-	/* collect student tables */
-	$student_tables = array();
-	$student_result = mysql_query("SELECT * FROM student_".$cID);
-	while($table = mysql_fetch_row($student_result)){
-		array_push($student_tables, $table[0]);
-	}
-	print_r($student_tables);
+	//print_r($student_tables);
 	/* collect question tables */
-	$question_tables = array();
-	$question_result = mysql_query("SELECT* from question_".$cID);
+	$questions = array();
+	$question_result = mysql_query("SELECT * from question_".$cID);
 	while($table = mysql_fetch_array($question_result)){
-		array_push($question_tables, $table[0]);
+		// echo $table["stud"];
+		// echo $table["questionID"];
+		// echo $table["message"];
+		$raised = mysql_fetch_array(mysql_query("SELECT stud, raisedHand FROM student_".$cID." WHERE stud ='".$table["stud"]."'"));
+		//echo $raised["stud"];
+		//echo $raised["raisedHand"];
+		$questions[$table["questionID"]] = array("user" => $table["stud"],
+												 "question" => $table["message"],
+												 "raisedHand" => $raised["raisedHand"]);
+		//$question_tables[$table["stud"]]["questionID"] = $table["message"]; 
 	}
+	//print_r($question_tables);
+	echo json_encode($questions);
+	
 	
 }
 ?>
