@@ -56,7 +56,7 @@ if(!$link){
 			<div class="content">
 			<div class="left">
 				<div id="grade-container">	
-					<div id="grade-box">A</div>
+					<img id="grade-box" src="images/A.png"/>
 					<form id="grade-radio-box">
 					    Lecture Grade<br/>
 						<input type="radio" name="grade" value="A" checked/> A<br/>
@@ -109,7 +109,6 @@ if(!$link){
 			type: "POST",
 			data: { letter_grade: grade, classroomID: '<?php echo $cID; ?>', user: '<?php echo $username; ?>'},
 			success: function() { 
-				$("#grade-box").image(grade);
 				switch (grade) {
 					case "A":
 						$("#grade-box").attr("src", "images/A.png");
