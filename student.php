@@ -107,6 +107,23 @@ if(!$link){
 			data: { letter_grade: grade, classroomID: '<?php echo $cID; ?>', user: '<?php echo $username; ?>'},
 			success: function() { 
 				$("#grade-box").text(grade);
+				switch (grade) {
+					case "A":
+						$("#grade-box").css("background-color", "green");
+						break;
+					case "B":
+						$("#grade-box").css("background-color", "blue");
+						break;
+					case "C":
+						$("#grade-box").css("background-color", "yellow");
+						break;
+					case "D":
+						$("#grade-box").css("background-color", "orange");
+						break;
+					case "F":
+						$("#grade-box").css("background-color", "red");
+						break;
+				}
 			}
 		});
 	});
