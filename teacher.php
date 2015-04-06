@@ -88,5 +88,58 @@ if(!$link){
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
+<script text="text/javascript">
+	var data_length = 0;
+	
+	var ajaxData = function() {
+		$.ajax({
+			type:"POST",
+			dataType: "json",
+			url: "feed.php",
+			data: { classroomID: '<?php echo $cID; ?>' },
+			success: function(data) {
+				var children = getChildIds(".right");
+				//console.log("It's running");
+				//console.log(children);
+				$.each(data, function(key, question) {
+					if(!($.inArray(key, children) > -1)){
+						var q = $("<div/>", {	
+									id: key,
+									class: 'q-box',
+									html: '<span class="user-tits">'+question.user+'</span><br/><span class="mess">'+question.question+'</span>'})
+						q.appendTo(".right").show('bounce',500);
+					}
+				});
+				
+			}
+		});
+	};
+	// make a request every second
+	setInterval(ajaxData, 3000);
+	/*
+	var gradeData = function() {
+		$.ajax({
+			type:"POST",
+			dataType: "json",
+			url: "grade_avg.php",
+			data: { classroomID: '<?php echo $cID; ?>' },
+			success: function(data) {
+				var children = getChildIds(".right");
+				console.log("It's running");
+				console.log(children);
+				$.each(data, function(key, question) {
+					if(!($.inArray(key, children) > -1)){
+						var q = $("<div/>", {	
+									id: key,
+									class: 'q-box',
+									html: '<span class="user-tits">'+question.user+'</span><br/><span class="mess">'+question.question+'</span>'})
+						q.appendTo(".right").show('bounce',1000);
+					}
+				});
+				
+			}
+		});
+	}*/
+</script>
 </body>
 </html>

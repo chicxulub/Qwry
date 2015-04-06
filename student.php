@@ -67,7 +67,7 @@ if(!$link){
 					</form>
 				</div>
 				<textarea id="question" cols=50 rows=7>Ask a question</textarea><br/><br/>
-				<img id="ask" src="images/ask-question.png"/>
+				<img id="ask" src="images/ask-question.png" onclick="ajaxData()"/>
 			</div>
 			<div class="right">
 			</div>
@@ -93,8 +93,8 @@ if(!$link){
 			data: { classroomID: '<?php echo $cID; ?>' },
 			success: function(data) {
 				var children = getChildIds(".right");
-				console.log("It's running");
-				console.log(children);
+				num_data = Object.keys(data).length;
+				console.log(num_data);
 				$.each(data, function(key, question) {
 					if(!($.inArray(key, children) > -1)){
 						var q = $("<div/>", {	
