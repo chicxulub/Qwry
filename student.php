@@ -85,6 +85,7 @@ if(!$link){
 <script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
 <script type="text/javascript">
+	var stuff = [];
 	var ajaxData = function() {
 		$.ajax({
 			type:"POST",
@@ -92,24 +93,25 @@ if(!$link){
 			url: "feed.php",
 			data: { classroomID: '<?php echo $cID; ?>' },
 			success: function(data) {
-				var children = getChildIds(".right");
-				num_data = Object.keys(data).length;
-				console.log(num_data);
-				$.each(data, function(key, question) {
-					if(!($.inArray(key, children) > -1)){
+				//console.log(data);
+				var key_container = Object.keys(data);
+				for(key_i in key_container) {
+					key_i = key_container[key_i];
+					if($.inArray(key_i, stuff) == -1){
+						stuff.push(key_i);
 						var q = $("<div/>", {	
-									id: key,
+									id: key_i,
 									class: 'q-box',
-									html: '<span class="user-tits">'+question.user+'</span><br/><span class="mess">'+question.question+'</span>'})
+									html: '<span class="user-tits">'+data[key_i].user+'</span><br/><span class="mess">'+data[key_i].question+'</span>'})
 						q.appendTo(".right").show('bounce',1000);
 					}
-				});
-				
+				}
+			setTimeout(ajaxData, 1000);
+
 			}
 		});
 	};
-	// make a request every second
-	setInterval(ajaxData, 3000);
+	ajaxData();
 	
 	
 	$("#grade-radio-box input[type='radio']").click(function(){

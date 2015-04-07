@@ -69,6 +69,8 @@ if(!$link){
 		</header>
 		<div class="content">
 		<div class="left">
+			<div id="thegrade">A</div>
+
 		</div>
 		<div class="right">
 		</div>
@@ -89,8 +91,7 @@ if(!$link){
 <script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 <script src="js/general.js"></script>
 <script text="text/javascript">
-	var data_length = 0;
-	
+	var stuff = [];
 	var ajaxData = function() {
 		$.ajax({
 			type:"POST",
@@ -98,48 +99,70 @@ if(!$link){
 			url: "feed.php",
 			data: { classroomID: '<?php echo $cID; ?>' },
 			success: function(data) {
-				var children = getChildIds(".right");
-				//console.log("It's running");
-				//console.log(children);
-				$.each(data, function(key, question) {
-					if(!($.inArray(key, children) > -1)){
+				//console.log(data);
+				var key_container = Object.keys(data);
+				for(key_i in key_container) {
+					key_i = key_container[key_i];
+					if($.inArray(key_i, stuff) == -1){
+						stuff.push(key_i);
 						var q = $("<div/>", {	
-									id: key,
+									id: key_i,
 									class: 'q-box',
-									html: '<span class="user-tits">'+question.user+'</span><br/><span class="mess">'+question.question+'</span>'})
-						q.appendTo(".right").show('bounce',500);
+									html: '<span class="user-tits">'+data[key_i].user+'</span><br/><span class="mess">'+data[key_i].question+'</span>'})
+						q.appendTo(".right").show('bounce',1000);
 					}
-				});
-				
+				}
+			setTimeout(ajaxData, 1000);
+
 			}
 		});
 	};
-	// make a request every second
-	setInterval(ajaxData, 3000);
-	/*
-	var gradeData = function() {
+	//setTimeout(ajaxData, 5000);
+	ajaxData();
+	
+	var calculate_grade = function(){
 		$.ajax({
 			type:"POST",
 			dataType: "json",
 			url: "grade_avg.php",
 			data: { classroomID: '<?php echo $cID; ?>' },
 			success: function(data) {
-				var children = getChildIds(".right");
-				console.log("It's running");
-				console.log(children);
-				$.each(data, function(key, question) {
-					if(!($.inArray(key, children) > -1)){
-						var q = $("<div/>", {	
-									id: key,
-									class: 'q-box',
-									html: '<span class="user-tits">'+question.user+'</span><br/><span class="mess">'+question.question+'</span>'})
-						q.appendTo(".right").show('bounce',1000);
-					}
-				});
+				var sum = 0;
+				tot = data.length;
+				$.each(data,function(key,val) {
+					sum += parseInt(val);
+				})
+				avg = sum/tot;
+				if (avg > 89 ) {
+					$("#thegrade").text("A");
+				} else if (avg > 85 && avg < 90) {
+					$("#thegrade").text("B+");
+				} else if (avg > 82 && avg < 86) {
+					$("#thegrade").text("B");
+				} else if (avg > 79 && avg < 83) {
+					$("#thegrade").text("B-");
+				} else if (avg > 75 && avg < 80) {
+					$("#thegrade").text("C+");
+				} else if (avg > 72 && avg < 76) {
+					$("#thegrade").text("C");
+				} else if (avg > 69 && avg < 73) {
+					$("#thegrade").text("C-");
+				} else if (avg > 65 && avg < 70) {
+					$("#thegrade").text("D+");
+				} else if (avg > 62 && avg < 66) {
+					$("#thegrade").text("D");
+				} else if (avg > 59 && avg < 63) {
+					$("#thegrade").text("D-");
+				}
+				else {
+					$("#thegrade").text("F");
+				}
 				
+				setTimeout(calculate_grade, 3000);
 			}
 		});
-	}*/
+	}
+	calculate_grade();
 </script>
 </body>
 </html>

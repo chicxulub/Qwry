@@ -144,3 +144,16 @@ label {
  font-size:1.1em;
  font-family:serif;
 }
+
+#thegrade {
+ height:300px;
+ width:300px;
+ line-height:100%;
+ font-size:300px;
+ color:black;
+//background-color:green;
+ margin-right:auto;
+ margin-left:auto;
+ margin-top:50px;
+ border-radius:5px;
+}
