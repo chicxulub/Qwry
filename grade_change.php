@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";
 $username = "root";
-$password = "Killdozer";
+$password; //= "Killdozer";
 $db = "qwry";
 $link = mysql_connect($server,$username,$password);
 mysql_select_db($db, $link);

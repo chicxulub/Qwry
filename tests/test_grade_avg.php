@@ -3,9 +3,9 @@
 $server = "localhost";
 $username = "root";
 $password; //= "Killdozer";
-$db = "qwry";
+$db = "qwry_test";
 $link = mysql_connect($server,$username,$password);	
-$cID = $_POST["classroomID"];
+$cID = 'test';
 
 if(!$link){ 
 	die("Could not connect to the CEFNS server: ".mysql_error()); 

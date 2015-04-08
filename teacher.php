@@ -9,7 +9,7 @@
 /* Connection Stuff */
 $server = "localhost";
 $username = "root";
-$password = "Killdozer";
+$password; //= "Killdozer";
 $db = "qwry";
 $link = mysql_connect($server,$username,$password);			
 
@@ -65,7 +65,7 @@ if(!$link){
 		// echo $createQuest."<br>";
 		?>
 		<header>
-			<span>Qwry</span>
+			<span><?php echo $cID; ?></span>
 		</header>
 		<div class="content">
 		<div class="left">

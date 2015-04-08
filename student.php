@@ -9,7 +9,7 @@
 /* Connection Stuff */
 $server = "localhost";
 $username = "root";
-$password = "Killdozer";
+$password; //= "Killdozer";
 $db = "qwry";
 $link = mysql_connect($server,$username,$password);
 /* Get stuff out of the post & get array */
@@ -51,7 +51,7 @@ if(!$link){
 			mysql_query($add_student); // added student 
 			?>
 			<header>
-			<span>Qwry</span>
+			<span><?php echo $cID; ?></span>
 			</header>
 			<div class="content">
 			<div class="left">
@@ -67,7 +67,7 @@ if(!$link){
 					</form>
 				</div>
 				<textarea id="question" cols=50 rows=7>Ask a question</textarea><br/><br/>
-				<img id="ask" src="images/ask-question.png" onclick="ajaxData()"/>
+				<img id="ask" src="images/ask-question.png"/>
 			</div>
 			<div class="right">
 			</div>
