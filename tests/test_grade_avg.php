@@ -5,7 +5,7 @@ $username = "root";
 $password; //= "Killdozer";
 $db = "qwry_test";
 $link = mysql_connect($server,$username,$password);	
-$cID = 'test';
+$cID = "test";
 
 if(!$link){ 
 	die("Could not connect to the CEFNS server: ".mysql_error()); 

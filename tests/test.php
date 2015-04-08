@@ -12,8 +12,8 @@ $username = "root";
 $password; // = "Killdozer";
 $db = "qwry_test";
 $link = mysql_connect($server,$username,$password);
-$cID = 'test';
-$lect = 'lecturer';
+$cID = "test";
+$lect = "lecturer";
 $grade = 90;
 $raised_hand = 0;
 
@@ -47,6 +47,10 @@ if(!$link){
 	}	
 	echo "Initializing tests and connecting to the database using the same calls as the real thing. This is the second automated test.<br/>";
 	mysql_select_db($db,$link);
+	mysql_query("DROP TABLE question_test CASCADE");
+	mysql_query("DROP TABLE student_test CASCADE");
+	mysql_query("DROP TABLE class_test CASCADE");
+	
 	$createClass = "CREATE TABLE class_".$cID."(
 		id CHAR(5) PRIMARY KEY,
 		lect VARCHAR(20)
@@ -74,11 +78,11 @@ if(!$link){
 		$cID."','".$lect."'
 	)";
 	
-	$add_student1 = "INSERT INTO student_".$cID." VALUES ('student 1',".$grade.",".$raised_hand.", '".$cID."')";
-	$add_student2 = "INSERT INTO student_".$cID." VALUES ('student 2',".$grade.",".$raised_hand.", '".$cID."')";
-	$add_student3 = "INSERT INTO student_".$cID." VALUES ('student 3',".$grade.",".$raised_hand.", '".$cID."')";
-	$add_student4 = "INSERT INTO student_".$cID." VALUES ('student 4',".$grade.",".$raised_hand.", '".$cID."')";
-	$add_student5 = "INSERT INTO student_".$cID." VALUES ('student 5',".$grade.",".$raised_hand.", '".$cID."')";
+	$add_student1 = "INSERT INTO student_".$cID." VALUES ('student1',".$grade.",".$raised_hand.", '".$cID."')";
+	$add_student2 = "INSERT INTO student_".$cID." VALUES ('student2',".$grade.",".$raised_hand.", '".$cID."')";
+	$add_student3 = "INSERT INTO student_".$cID." VALUES ('student3',".$grade.",".$raised_hand.", '".$cID."')";
+	$add_student4 = "INSERT INTO student_".$cID." VALUES ('student4',".$grade.",".$raised_hand.", '".$cID."')";
+	$add_student5 = "INSERT INTO student_".$cID." VALUES ('student5',".$grade.",".$raised_hand.", '".$cID."')";
 
 
 
@@ -108,11 +112,11 @@ if(!$link){
 	<div class="testing">
 		
 		<div class="block">
-			Test averaging grades<br/>
+			Test changing grades<br/>
 			<?php
 			for($i=1;$i<6;$i++){
 				echo 'student '.$i.':
-				<select id="student-'.$i.'-grade">
+				<select id="student'.$i.'">
 					<option value="A">A</option>
 					<option value="B">B</option>
 					<option value="C">C</option>
@@ -122,21 +126,22 @@ if(!$link){
 			}
 			
 			?>
-			<div id="test-avg">Average grade: A</div>
+			<div id="test-avg">Test Averaging Grades<br/>Average grade: <span id="dispgrade">A</span></div>
 		</div>
 		
 		<div class="block">
 			Test the question feed<br/>
 			<select id="test-student-asking">
-				<option value="student 1">student 1</option>
-				<option value="student 2">student 2</option>
-				<option value="student 3">student 3</option>
-				<option value="student 4">student 4</option>
-				<option value="student 5">student 5</option>
+				<option value="student1">student 1</option>
+				<option value="student2">student 2</option>
+				<option value="student3">student 3</option>
+				<option value="student4">student 4</option>
+				<option value="student5">student 5</option>
 			</select><button id="test-raise">Raise Hand</button><br/><br/>
 			<textarea id="test-mess" row="10" col="50">Ask a test question...</textarea><button id="test-ask">Ask</button>
 		</div>
 		<div class="block">
+			Test querying the database... <br/>
 			Here's what your database looks like:
 		</div>
 	</div>
@@ -147,5 +152,92 @@ if(!$link){
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="../js/general.js"></script>
 <script src="../js/testing.js"></script>
+<script type="text/javascript">
+	var stuff = [];
+	var testAjaxData = function() {
+		$.ajax({
+			type:"POST",
+			dataType: "json",
+			url: "test_feed.php",
+			data: {},
+			success: function(data) {
+			setTimeout(testAjaxData, 1000);
+
+			}
+		});
+	};
+	//setTimeout(ajaxData, 5000);
+	testAjaxData();
+	
+	var test_calculate_grade = function(){
+		$.ajax({
+			type:"POST",
+			dataType: "json",
+			url: "test_grade_avg.php",
+			data: { },
+			success: function(data) {
+				var sum = 0;
+				tot = data.length;
+				$.each(data,function(key,val) {
+					sum += parseInt(val);
+				})
+				avg = sum/tot;
+				if (avg > 89 ) {
+					$("#dispgrade").text("A");
+				} else if (avg > 85 && avg < 90) {
+					$("#dispgrade").text("B+");
+				} else if (avg > 82 && avg < 86) {
+					$("#dispgrade").text("B");
+				} else if (avg > 79 && avg < 83) {
+					$("#dispgrade").text("B-");
+				} else if (avg > 75 && avg < 80) {
+					$("#dispgrade").text("C+");
+				} else if (avg > 72 && avg < 76) {
+					$("#dispgrade").text("C");
+				} else if (avg > 69 && avg < 73) {
+					$("#dispgrade").text("C-");
+				} else if (avg > 65 && avg < 70) {
+					$("#dispgrade").text("D+");
+				} else if (avg > 62 && avg < 66) {
+					$("#dispgrade").text("D");
+				} else if (avg > 59 && avg < 63) {
+					$("#dispgrade").text("D-");
+				}
+				else {
+					$("#dispgrade").text("F");
+				}
+				
+				setTimeout(test_calculate_grade, 3000);
+			}
+		});
+	}
+	test_calculate_grade();
+	
+	$("select").change(function(){
+		var stud = $(this).attr('id');
+		var grade = $(this).val();
+		console.log(stud);
+		console.log(grade);
+		$.ajax({
+			url: "test_grade_change.php",
+			type: "POST",
+			data: { letter_grade: grade, user: stud}
+		});
+	});
+	/*
+	$("#ask").click(function() {
+		message_text = $("#question").val();
+		$.ajax({
+			url: "ask_question.php",
+			type: "POST",
+			data: { question: message_text,  classroomID: '<?php echo $cID; ?>', user: '<?php echo $username; ?>'},
+			success: function(){
+				$("#question").val("Ask another question...");
+			}
+		
+		});
+	});*/
+
+</script>
 </body>
 </html>
