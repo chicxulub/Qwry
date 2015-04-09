@@ -111,7 +111,7 @@ if(!$link){
 	</div>
 	<div class="testing">
 		
-		<div class="block">
+		<div id="test-grade" class="block">
 			Test changing grades<br/>
 			<?php
 			for($i=1;$i<6;$i++){
@@ -129,7 +129,7 @@ if(!$link){
 			<div id="test-avg">Test Averaging Grades<br/>Average grade: <span id="dispgrade">A</span></div>
 		</div>
 		
-		<div class="block">
+		<div id="test-question" class="block">
 			Test the question feed<br/>
 			<select id="test-student-asking">
 				<option value="student1">student 1</option>
@@ -154,6 +154,7 @@ if(!$link){
 <script src="../js/testing.js"></script>
 <script type="text/javascript">
 	var stuff = [];
+	var q_boxes = [];
 	var testAjaxData = function() {
 		$.ajax({
 			type:"POST",
@@ -161,6 +162,34 @@ if(!$link){
 			url: "test_feed.php",
 			data: {},
 			success: function(data) {
+				var key_container = Object.keys(data);
+				for(key_i in key_container) {
+					key_i = key_container[key_i];
+					if($.inArray(key_i, stuff) == -1){
+						stuff.push(key_i);
+						var q = $("<div/>", {	
+									id: key_i,
+									class: 'q-box',
+									html: '<span class="user-tits">'+data[key_i].user+'</span><br/><span class="mess">'+data[key_i].question+'</span>'})
+						q.appendTo(".test-q").show('bounce',1000);
+					}
+					// check for raised hands
+					q_boxes = $(".test-q").children();
+					if(data[key_i].raisedHand == 1){
+						// for each of the questions 
+						$.each(q_boxes, function() {
+							var the_box = $(this)
+							var user_in_q = $(this).find(".user-tits").text();
+							console.log(user_in_q);
+							console.log(data[key_i].user);
+							if(user_in_q == data[key_i].user){
+								the_box.css("background-color", "yellow");
+							}
+						});
+						
+					}
+					
+				}
 			setTimeout(testAjaxData, 1000);
 
 			}
@@ -213,30 +242,46 @@ if(!$link){
 	}
 	test_calculate_grade();
 	
-	$("select").change(function(){
+	$("#test-grade select").change(function(){
 		var stud = $(this).attr('id');
 		var grade = $(this).val();
-		console.log(stud);
-		console.log(grade);
+		//console.log(stud);
+		//console.log(grade);
 		$.ajax({
 			url: "test_grade_change.php",
 			type: "POST",
 			data: { letter_grade: grade, user: stud}
 		});
 	});
-	/*
-	$("#ask").click(function() {
-		message_text = $("#question").val();
+	
+	$("#test-ask").click(function() {
+		var message_text = $("#test-mess").val();
+		//console.log(message_text);
+		var stud = $("#test-student-asking option:selected").val();
+		//console.log(user);
 		$.ajax({
-			url: "ask_question.php",
+			url: "test_ask_question.php",
 			type: "POST",
-			data: { question: message_text,  classroomID: '<?php echo $cID; ?>', user: '<?php echo $username; ?>'},
+			data: { question: message_text, user: stud},
 			success: function(){
-				$("#question").val("Ask another question...");
+				//$("#question").val("Ask another question...");
+				console.log("done.");
 			}
-		
 		});
-	});*/
+	});
+	
+	$("#test-raise").click(function() {
+		var stud = $("#test-student-asking option:selected").val();	
+		$.ajax({
+			url: "test_feed.php",
+			type: "POST",
+			dataType: "json",
+			data: { raised: 1, user: stud },
+			success: function(data) {
+				console.log(data);
+			}
+		});
+	});
 
 </script>
 </body>

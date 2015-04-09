@@ -214,6 +214,7 @@ label {
  display:none;
  float:right;
  width:50%;
- background-color:blue;
+ //background-color:blue;
  height:90%;
+ overflow-y:scroll;	
 }
