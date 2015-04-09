@@ -143,6 +143,11 @@ if(!$link){
 		<div class="block">
 			Test querying the database... <br/>
 			Here's what your database looks like:
+			<div id="sql-box">
+				<?php
+				
+				?>
+			</div>
 		</div>
 	</div>
 	<div class="test-q">
