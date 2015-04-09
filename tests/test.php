@@ -140,15 +140,6 @@ if(!$link){
 			</select><button id="test-raise">Raise Hand</button><br/><br/>
 			<textarea id="test-mess" row="10" col="50">Ask a test question...</textarea><button id="test-ask">Ask</button>
 		</div>
-		<div class="block">
-			Test querying the database... <br/>
-			Here's what your database looks like:
-			<div id="sql-box">
-				<?php
-				
-				?>
-			</div>
-		</div>
 	</div>
 	<div class="test-q">
 	</div>
