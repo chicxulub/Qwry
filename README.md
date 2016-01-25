@@ -90,36 +90,41 @@ Proposed functionality: A regular letter grade will be generated from the result
 #####2.4.3 The functionality must be unobtrusive in the classroom. Loud noises should be avoided and it should be easy to craft a readable question.
 
 ####2.5 After School Special (Desired Functionality):
+
 Qwry will produce a graph of Understanding Over Time available to the professor. The x-axis represents time, where the y-axis represents a percentage of understanding in the virtual classroom.
 The questions for each class session will be exported to a text document available to the professor or the students.
 A WYSIWYG text editor that allows students to type special characters that may be useful in math and physics classes, or a special ‘code’ font for use in computer science classes
 A lecturer will be provided with a checkbox on each question to mark that question ‘answered’. The question will not disappear, but it will be marked with a special color to indicate that it has been answered.
 
-2.6 Features not available:
+####2.6 Features not available:
+
 There will be a code similar to normal classroom etiquette, but usernames and messages sent to the professor will not be censored and student anonymity will be protected.
 
 
+###3. Assumptions
 
-
-3. Assumptions
-
-	3.1 No change in requirements
+####3.1 No change in requirements
 The developers assume that the scope of the project will not change and the acceptance criteria put forward by this document will be the determining factor in whether or not the development application is successful. This is assumed due to the use of the Waterfall Model as a development process for this project.
 
-3.2 Open to interpretation
+####3.2 Open to interpretation
+
 “Web application” means this functionality will be available on the internet, through a web browser. There are many ways to develop and distribute a web application, whether it be through pure code such as javascript or php, or with the help of a web framework such as Django.
 
-4. Acceptance Criteria
+###4. Acceptance Criteria
 
-4.1 Qwry is available on a web browser
+####4.1 Qwry is available on a web browser
+
 Every person with an internet connection and a web browser installed on their computer can somehow access and run the Qwry application.
 
-4.2 Students may write and send their questions
+####4.2 Students may write and send their questions
+
 Students are able to create a username to get access to the text box where they will craft their questions. The submit process must clear that textbox so the student can write more questions if need be.
 
-4.3 The lecturer may receive questions
+####4.3 The lecturer may receive questions
+
 All questions sent by students are received and viewable by the lecturer, in her queue.
 
-4.4  The lecturer is aware of the lecture’s effectiveness
+####4.4  The lecturer is aware of the lecture’s effectiveness
+
 The students are able ‘grade’ the lecture. The lecturer's effectiveness is accurately given by the resulting indicator in ‘teacher mode’.
 
