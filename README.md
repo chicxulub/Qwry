@@ -7,7 +7,7 @@ http://cefns.nau.edu/~esb57/cs386/index.php
 ## Requirements
 Qwry: Evaluate lectures dynamically and improve student understanding in the classroom
 
-# 1. Proposal
+### 1. Proposal
 
 1.1 Target 
 Qwry, the proposed web application software, is intended for use in both high school and university lectures. 
