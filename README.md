@@ -1,22 +1,23 @@
-# Qwry
+#Qwry
 CS 386 Software Project 
 
-## Working Demo
+##Working Demo
 http://cefns.nau.edu/~esb57/cs386/index.php
 
-## Requirements
+##Requirements
 Qwry: Evaluate lectures dynamically and improve student understanding in the classroom
 
-### 1. Proposal
+###	1. Proposal
 
-1.1 Target 
-Qwry, the proposed web application software, is intended for use in both high school and university lectures. 
+####		1.1 Target
 
-1.2 Purpose
-The software is intended to improve learning during lectures by creating a more interactive and thoughtful rapport between students and the lecturer by using a virtual classroom environment. Crafting good questions often leads to better learning in the students who ask them, [1] but not all students are eager to interrupt class to ask a question for a number of reasons.
+			Qwry, the proposed web application software, is intended for use in both high school and university lectures. 
 
-1.3 Force fairness
-The application should even the playing field in large lecture halls by prioritizing questions in the order they are asked. 
+####		1.2 Purpose
+			The software is intended to improve learning during lectures by creating a more interactive and thoughtful rapport between students and the lecturer by using a virtual classroom environment. Crafting good questions often leads to better learning in the students who ask them, [1] but not all students are eager to interrupt class to ask a question for a number of reasons.
+
+#####		1.3 Force fairness
+			The application should even the playing field in large lecture halls by prioritizing questions in the order they are asked. 
 
 1.4 Overcome insecurity
 The option of anonymity will encourage hesitant students to ask questions when they may have otherwise opted out. 
