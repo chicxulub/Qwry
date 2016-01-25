@@ -7,47 +7,52 @@ http://cefns.nau.edu/~esb57/cs386/index.php
 ##Requirements
 Qwry: Evaluate lectures dynamically and improve student understanding in the classroom
 
-###	1. Proposal
+###1. Proposal
 
-####		1.1 Target
+####1.1 Target
 
-			Qwry, the proposed web application software, is intended for use in both high school and university lectures. 
+Qwry, the proposed web application software, is intended for use in both high school and university lectures. 
 
-####		1.2 Purpose
-			The software is intended to improve learning during lectures by creating a more interactive and thoughtful rapport between students and the lecturer by using a virtual classroom environment. Crafting good questions often leads to better learning in the students who ask them, [1] but not all students are eager to interrupt class to ask a question for a number of reasons.
+####1.2 Purpose
 
-#####		1.3 Force fairness
-			The application should even the playing field in large lecture halls by prioritizing questions in the order they are asked. 
+The software is intended to improve learning during lectures by creating a more interactive and thoughtful rapport between students and the lecturer by using a virtual classroom environment. Crafting good questions often leads to better learning in the students who ask them, [1] but not all students are eager to interrupt class to ask a question for a number of reasons.
 
-1.4 Overcome insecurity
+#####1.3 Force fairness
+
+The application should even the playing field in large lecture halls by prioritizing questions in the order they are asked. 
+
+####1.4 Overcome insecurity
+
 The option of anonymity will encourage hesitant students to ask questions when they may have otherwise opted out. 
 
-1.5 Inform the lecturer
+####1.5 Inform the lecturer
+
 Qwry also helps professors and teachers analyze the effectiveness of their lecture in real time, as well as have an aggregate of student questions available at the end of a lecture. 
 
-1.6 Learn online easier
+####1.6 Learn online easier
+
 As we move towards a more global, more connected, more educated society, this software could potentially be implemented for online classrooms, where a video of the lecture could be recorded and streamed, and the virtual classroom allows for a more interactive and rewarding experience for all students, wherever they may be.
 
-1.7 Make it open, make it free
+####1.7 Make it open, make it free
+
 The web application will run in a web browser, making it fast to develop and open the availability to any student and lecturer with access to a web browser during the lecture. 
 
-1.8 Move forward
+####1.8 Move forward
+
 As computers become more commonplace in the classroom, it is important to embrace the use of technology to increase productivity rather than allow it to be a detriment. 
 
+###2. Functionality
 
+####2.1 Opening Qwry
 
+#####2.1.1 Qwry will be available as a web application, open to all users with web browsers.
 
+#####2.1.2 Professors and teachers can sign in with a special account  and create a virtual classroom.
 
-2. Functionality
-
-2.1 Opening Qwry
-2.1.1 Qwry will be available as a web application, open to all users with web browsers.
-
-2.1.2 Professors and teachers can sign in with a special account  and create a virtual classroom.
 A check box will prompt the user to define their user account as a teacher.
 When a ‘teacher’ account is created, the user is brought to their new virtual classroom and given a newly generated unique classroom identification number.
 
-2.1.3 Students create a username each time they log in (much like a simple chat room) and check into the virtual classroom their professor has created.
+#####2.1.3 Students create a username each time they log in (much like a simple chat room) and check into the virtual classroom their professor has created.
 A check box will prompt the user to define their user account as a student.
 Text fields will prompt the student for their desired username and the ID of the virtual classroom.
 
